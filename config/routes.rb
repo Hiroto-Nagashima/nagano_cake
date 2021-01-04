@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'sign_in' => "sessions#new"
-    get 'sessions/create'
-    get 'sessions/destroy'
-  end
+ 
+  devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

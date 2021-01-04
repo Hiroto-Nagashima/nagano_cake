@@ -21,16 +21,19 @@
                     <ul class="navbar-nav ml-auto ">
                         <% if admin_signed_in? %>
                           <li class="nav-item ">
-                            <%= link_to "About",class: 'nav-link fas fa-home text-white'%></i>
+                            <%= link_to "商品一覧",class: 'nav-link fas fa-home text-white'%></i>
                           </li>
                            <li class="nav-item">
-                            <%= link_to "商品一覧" ,class: 'nav-link fas fa-users text-white'%>
+                            <%= link_to "会員一覧" ,class: 'nav-link fas fa-users text-white'%>
                           </li>
                            <li class="nav-item">
-                            <%= link_to "",class: 'nav-link fas fa-book-open text-white'%>
+                            <%= link_to "注文履歴一覧",class: 'nav-link fas fa-book-open text-white'%>
+                          </li>
+                          <li class="nav-item">
+                            <%= link_to "ジャンル一覧",class: 'nav-link fas fa-book-open text-white'%>
                           </li>
                            <li class="nav-item">
-                            <%= link_to "logout", method: :delete ,class: 'nav-link fas fa-sign-out-alt text-white' %>
+                            <%= link_to "ログアウト", method: :delete ,class: 'nav-link fas fa-sign-out-alt text-white' %>
                           </li>
                         <% else %>
                           <li class="nav-item ">

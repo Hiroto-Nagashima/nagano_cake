@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
   namespace :admin do
     get 'orders/show'
-    get 'orders/update'
+    patch 'orders/update'
   end
   namespace :admin do
     get 'customers/index'
     get 'customers/show'
     get 'customers/edit'
-    get 'customers/update'
+    patch 'customers/update'
   end
   namespace :admin do
     get 'genres/index'
-    get 'genres/create'
-    get 'genres/update'
+    post 'genres/create'
+    patch 'genres/update'
     get 'genres/edit'
   end
   namespace :admin do
@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     get 'items/new'
     get 'items/show'
     get 'items/edit'
-    get 'items/create'
-    get 'items/update'
+    post 'items/create'
+    patch 'items/update'
   end
  namespace :admin do
     get 'top'=> 'homes#top'

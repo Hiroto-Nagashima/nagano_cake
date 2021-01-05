@@ -1,3 +1,4 @@
 class Item < ApplicationRecord
-  belomgs_to :genres
+  belongs_to :genres
+  attachment :image
 end

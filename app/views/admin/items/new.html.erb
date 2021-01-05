@@ -1,17 +1,23 @@
 <div class="container mt-3">
       <div class="row">
         <div class="col-md-5  mx-auto">
-            <%= form_with model:@user, local:true do |f| %>
-            <h2>User info</h2>
-            <p>Name</p>
-            <%= f.text_field :name, autofocus: true ,placeholder:"#{@user.name}" ,class:"form-control" %>
-            <p class="my-2">Image</p>
-            <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-            <p class="my-2">Introduction</p>
+            <%= form_with model:@item, url:admin_items_create_path,local:true do |f| %>
+            <h2>商品新規登録</h2>
+            <p class="my-2">商品画像</p>
+            <%= f.attachment_field :image %>
+            <p>商品名</p>
+            <%= f.text_field :name, autofocus: true  ,class:"form-control" %>
+            <p class="my-2">商品説明</p>
             <%= f.text_area :introduction ,class:"form-control" %>
-            <%= f.submit "Update User" ,class:"btn btn-secondary my-3"%>
+            <p class="my-2">ジャンル</p>
+            <%= f.select :genre_id, [['ケーキ', 1], ['プリン', 2],['焼き菓子', 3],['キャンディ', 4]] , include_blank: "--選択して下さい--",class:"form-control" %>
+            <p class="my-2">税抜価格</p>
+            <%= f.text_field :price, autofocus: true %><span>円</span>
+            <p class="my-2">販売ステータス</p>
+            <%= f.radio_button :is_active,true %><span>販売中</span>
+            <%= f.radio_button :is_active, false %><span>販売停止中</span>
+            <%= f.submit "新規登録" ,class:"btn btn-secondary my-3"%>
             <% end %>
-            <p class="my-4 text-center">CopyRight Infratop.inc</p>
          </div>
       </div>
 </div>

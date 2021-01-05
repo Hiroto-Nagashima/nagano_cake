@@ -1,2 +1,17 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container mt-3">
+      <div class="row">
+        <div class="col-md-5  mx-auto">
+            <%= form_with model:@user, local:true do |f| %>
+            <h2>User info</h2>
+            <p>Name</p>
+            <%= f.text_field :name, autofocus: true ,placeholder:"#{@user.name}" ,class:"form-control" %>
+            <p class="my-2">Image</p>
+            <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+            <p class="my-2">Introduction</p>
+            <%= f.text_area :introduction ,class:"form-control" %>
+            <%= f.submit "Update User" ,class:"btn btn-secondary my-3"%>
+            <% end %>
+            <p class="my-4 text-center">CopyRight Infratop.inc</p>
+         </div>
+      </div>
+</div>

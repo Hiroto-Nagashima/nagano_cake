@@ -1,15 +1,13 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items=Item.page(params[:page]).reverse_order
-    if genre_id ==1
-      @genre = "ケーキ"
-    else if genre_id ==2
-      @genre = "プリン"
-    else if genre_id ==3
-      @genre = "焼き菓子"
-    else @genre = "キャンディ"
-    end
-        
+    @items=Item.page(params[:page])
+    # @item =Item.find(params[:id])
+    # if @item.is_active == true
+    #   @status="販売中"
+    # else
+    #   @status="販売停止中"
+    # end
+
   end
 
   def new
@@ -17,26 +15,34 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
-    @item=Item.find(params.id)
+    @item=Item.find(params[:id])
   end
 
   def edit
+    @item=Item.find(params[:id])
   end
 
   def create
     @item=Item.new(item_params)
+
    if @item.save
-    redirect_to admin_items_index_path
+    redirect_to admin_items_path
    else
-    render "new"
+    render new_admin_item_path
    end
   end
 
   def update
+    @item=Item.find(params[:id])
+   if @item.update(item_params)
+    redirect_to admin_item_path
+   else
+    render edit_admin_item_path
+   end
   end
 
 private
-def item_params
-  params.require(:item).permit(:name, :image, :introduction,:genre_id,:price,:is_active)
-end
+  def item_params
+    params.require(:item).permit(:name,:image,:introduction,:genre_id,:price,:is_active)
+  end
 end

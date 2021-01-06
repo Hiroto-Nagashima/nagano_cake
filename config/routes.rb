@@ -16,12 +16,13 @@ Rails.application.routes.draw do
     get 'genres/edit'
   end
   namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
-    post 'items/create'
-    patch 'items/update'
+    # get 'items/index'
+    # get 'items/new'
+    # get 'items/show'
+    # get 'items/edit'
+    # post 'items/create'
+    # patch 'items/update'
+    resources :items
   end
  namespace :admin do
     get 'top'=> 'homes#top'

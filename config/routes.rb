@@ -10,10 +10,11 @@ Rails.application.routes.draw do
     patch 'customers/update'
   end
   namespace :admin do
-    get 'genres/index'
-    post 'genres/create'
-    patch 'genres/update'
-    get 'genres/edit'
+    # get 'genres/index'
+    # post 'genres/create'
+    # patch 'genres/update'
+    # get 'genres/:id/edit'
+    resources :genres
   end
   namespace :admin do
     # get 'items/index'

@@ -1,2 +1,27 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container mt-3">
+      <div class="row">
+          <%= form_with model:@customer, url:admin_customer_path,method: :patch,local:true do |f| %>
+          <h4><%="#{@customer.last_name}#{@customer.first_name}"%>さんの会員詳細</h4>
+          <p>会員ID</p>
+          <%= @customer.id %>
+          <p>氏名</p>
+          <%= f.text_field :last_name, autofocus: true,placeholder:"#{@customer.last_name}"%>
+          <%= f.text_field :first_name ,autofocus: true ,placeholder:"#{@customer.first_name}"%>
+          <p>フリガナ</p>
+          <%= f.text_field :last_name_kana ,autofocus: true ,placeholder:"#{@customer.last_name_kana}"%>
+          <%= f.text_field :first_name_kana ,autofocus: true,placeholder:"#{@customer.first_name_kana}"%>
+          <p class="my-2">郵便番号</p>
+          <%= f.text_field :postal_code ,autofocus: true  ,class:"form-control",placeholder:"#{@customer.postal_code}"%>
+          <p class="my-2">住所</p>
+          <%= f.text_field :address ,autofocus: true  ,class:"form-control",placeholder:"#{@customer.address}"%>
+          <p class="my-2">電話番号</p>
+          <%= f.text_field :telephone_number, autofocus: true  ,class:"form-control",placeholder:"#{@customer.telephone_number}"%>
+          <p class="my-2">メールアドレス</p>
+          <%= f.text_field :email ,autofocus: true  ,class:"form-control",placeholder:"#{@customer.email}"%>
+          <p class="my-2">販売ステータス</p>
+          <%= f.radio_button :is_active,"有効" %><span>有効</span>
+          <%= f.radio_button :is_active, "退会" %><span>退会</span>
+          <%= f.submit "変更を保存" ,class:"btn btn-secondary my-3"%>
+          <% end %>
+      </div>
+</div>

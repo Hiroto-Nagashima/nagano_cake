@@ -1,12 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items=Item.page(params[:page])
-    # @item =Item.find(params[:id])
-    # if @item.is_active == true
-    #   @status="販売中"
-    # else
-    #   @status="販売停止中"
-    # end
 
   end
 

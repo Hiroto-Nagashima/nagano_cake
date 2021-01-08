@@ -3,7 +3,7 @@
     <h4><%="#{@customer.last_name}#{@customer.first_name}"%>さんの会員詳細</h4>
   </div>
   <div class="row">
-      <table class="table">
+      <table class="table table-borderless">
         <tr><th>会員ID</th><td><%=@customer.id%></td></tr>
         <tr><th>氏名</th><td><%=@customer.last_name%><%=@customer.first_name%></td></tr>
         <tr><th>フリガナ</th><td><%=@customer.last_name_kana%><%=@customer.first_name_kana%></td></tr>
@@ -12,9 +12,18 @@
         <tr><th>電話番号</th><td><%=@customer.telephone_number%></td></tr>
         <tr><th>メールアドレス</th><td><%=@customer.email%></td></tr>
         <tr><th>販売ステータス</th><td><%=@customer.is_active%></td></tr>
+        <tr>
+          <th></th>
+          <td class="row">
+            <div class="col w-50">
+              <%= link_to "編集する" , edit_admin_customer_path ,class:"btn btn-success btn-sm text-white text-center" %>
+            </div>
+            <div class="col">
+              <%= link_to "注文履歴一覧をみる" , admin_path ,class:"btn btn-primary btn-sm text-white text-center" %>
+            </td>
+        </tr>
       </table>
-      <div class="row-">
-        <%= link_to "編集する" , edit_admin_customer_path ,class:"btn btn-success btn-sm text-white text-center" %>
+
       </div>
     </div>
 

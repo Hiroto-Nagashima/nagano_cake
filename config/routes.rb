@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'orders/show'
-    patch 'orders/update'
+    resources :orders, only:[:show,:update]
+    get 'order/:id/individual'=> 'order#index'
   end
   namespace :admin do
     resources :customers

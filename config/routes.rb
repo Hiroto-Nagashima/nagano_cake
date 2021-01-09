@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only:[:show,:update]
-    get 'order/:id/individual'=> 'order#index'
+    get 'order/:id/individual'=> 'orders#index'
   end
   namespace :admin do
     resources :customers
@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :items
+  end
+  namespace :admin do
+    resources :order_details, only:[:update]
   end
  namespace :admin do
     get 'top'=> 'homes#top'

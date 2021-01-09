@@ -5,7 +5,7 @@
     <div class="row mx-auto">
 
       <table class="table">
-        <thead>
+        <thead class="thead-light">
           <tr>
             <th>購入日時</th>
             <th >購入者</th>
@@ -15,12 +15,14 @@
         </thead>
 
         <tbody>
+            <% @order.order_items.each do |order_item|%>
             <tr>
               <td><%= link_to "#{@order.created_at}" ,admin_order_path(@order.id) %></td>
               <td><%= @order.customer.last_name%><%= @order.customer.first_name%></td>
-              <td><%=  %></td>
+              <td><%= order_item.amount %></td>
               <td><%= @order.status %></td>
             </tr>
+            <% end %>
         </tbody>
       </table>
    </div>

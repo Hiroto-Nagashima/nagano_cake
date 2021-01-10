@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :customers
   root 'homes#top'
   get 'homes/about' =>'homes#about'
   resources :items, only:[:show,:index]

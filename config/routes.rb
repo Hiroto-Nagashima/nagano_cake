@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  root 'homes#top'
+  get 'homes/about' =>'homes#about'
+  resources :items, only:[:show,:index]
   namespace :admin do
     resources :orders, only:[:show,:update]
     get 'order/:id/individual'=> 'orders#index'

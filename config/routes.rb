@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :cart_items
   devise_for :customers
   resource :customers, only:[:edit,:update]
-  get 'customers/show' =>'customers#my_page'
+  get 'customers/my_page' =>'customers#show'
   get 'customers/unsubscribe' =>'customers#unsubscribe'
   patch 'customers/withdraw' =>'customers#withdraw'
 

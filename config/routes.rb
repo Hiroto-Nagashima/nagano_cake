@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :cart_items
+  resources :cart_items,only:[:index,:update,:create,:destroy]
+  delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+
   devise_for :customers
   resource :customers, only:[:edit,:update]
   get 'customers/my_page' =>'customers#show'

@@ -9,12 +9,11 @@ class ApplicationController < ActionController::Base
         admin_top_path
       end
     end
-
     def after_sign_out_path_for(resource)
-      if resource.class.name=="Customer"
-        destroy_customer_session_path
-      elsif resource.class.name=="Admin"
-        new_admin_session_path
+      if resource == :customer
+        root_path
+      elsif resource == :admin
+       root_path
       end
     end
 

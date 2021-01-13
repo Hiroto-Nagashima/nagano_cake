@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
-  resources :cart_items,only:[:index,:update,:create,:destroy]
+
+  get 'addresses/index'
+  get 'addresses/edit'
+  get 'addresses/create'
+  get 'addresses/update'
+  get 'addresses/destroy'
+  post 'orders/confirm' =>'orders#confirm'
+  get 'orders/complete'=>'orders#complete'
+  resources :orders,only:[:index,:show,:create,:new]
+
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  resources :cart_items,only:[:index,:update,:create,:destroy]
+
 
   devise_for :customers
   resource :customers, only:[:edit,:update]

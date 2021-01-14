@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'addresses/index'
-  get 'addresses/edit'
-  get 'addresses/create'
-  get 'addresses/update'
-  get 'addresses/destroy'
+  resources :addresses
+
   post 'orders/confirm' =>'orders#confirm'
   get 'orders/complete'=>'orders#complete'
   resources :orders,only:[:index,:show,:create,:new]

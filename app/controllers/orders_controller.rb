@@ -11,11 +11,11 @@ class OrdersController < ApplicationController
    current_customer.cart_items.each do |ci|
       @order.total_price= ci.amount*ci.item.price + @order.shopping_fee
    end
+    @order.payment_method=params[:order][:payment_method]
     @customer=current_customer
     if params[:order][:selected_address]== "0"
         @order.address=@customer.address
         @order.name=@customer.last_name + @customer.first_name
-
         @order.postal_code=@customer.postal_code
     elsif params[:order][:selected_address]== "1"
       address=Address.find(params[:order][:registered_address])
@@ -28,23 +28,27 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # orderを作成
     order = Order.new
+    order.customer_id=current_customer.id
+    order.postal_code=params[:order][:postal_code]
     order.address=params[:order][:address]
+    order.name=params[:order][:name]
+    order.shopping_fee = 800
+    order.total_price=params[:order][:total_price]
+    order.save
 
-
-    # order itemを作成
     current_customer.cart_items.each do |ci|
-      # order_item = OrderItem.new
-      # order_itemitem_id = ci.item_id
-      # ...  (ciを元に代入していく)
-
-      # odrde_item.save
+      order_item = OrderItem.new
+      order_item.item_id = ci.item_id
+      order_item.price=ci.item.price
+      order_item.amount=ci.amount
+      order_item.order_id= order_item.id
+      order_item.save
     end
+     cart_items=current_customer.cart_items
+     cart_items.destroy_all
+     redirect_to orders_complete_path
 
-    # cart_itemを全て削除...
-
-    # リダイレクトで complete
   end
 
   def complete

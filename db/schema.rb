@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_105125) do
+ActiveRecord::Schema.define(version: 2021_01_13_081620) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_105125) do
     t.string "address"
     t.string "postal_code"
     t.string "telephone_number"
-    t.string "is_active", default: "有効"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_105125) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "genre_id"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_105125) do
     t.integer "item_id"
     t.integer "price"
     t.integer "amount"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_105125) do
     t.string "name"
     t.integer "shopping_fee"
     t.integer "total_price"
-    t.integer "payment_method"
+    t.integer "payment_method", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

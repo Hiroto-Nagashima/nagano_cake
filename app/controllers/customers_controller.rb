@@ -5,13 +5,12 @@ class CustomersController < ApplicationController
   end
 
   def edit
-    @customer=current_customer
+    @customer = Customer.find(current_customer.id)
   end
 
   def update
-    @customer=current_customer
+    @customer = Customer.find(current_customer.id)
     @customer.update(edit_params)
-
     redirect_to customers_my_page_path
   end
 

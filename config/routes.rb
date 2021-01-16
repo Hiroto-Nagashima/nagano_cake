@@ -2,16 +2,18 @@ Rails.application.routes.draw do
 
   resources :addresses
 
-  post 'orders/confirm' =>'orders#confirm'
-  get 'orders/complete'=>'orders#complete'
-  resources :orders,only:[:index,:show,:create,:new]
+  post 'orders/confirm' => 'orders#confirm'
+  get 'orders/complete'=> 'orders#complete'
+  resources :orders,only: [:index,:show,:create,:new]
 
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items,only:[:index,:update,:create,:destroy]
 
 
-  devise_for :customers
   resource :customers, only:[:edit,:update]
+  devise_for :customers,controllers:{
+    registrations: 'public/customers/registrations'
+  }
   get 'customers/my_page' =>'customers#show'
   get 'customers/unsubscribe' =>'customers#unsubscribe'
   patch 'customers/withdraw' =>'customers#withdraw'

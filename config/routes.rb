@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resource :customers, only:[:edit,:update]
   devise_for :customers,controllers:{
-    registrations: 'public/customers/registrations'
+    registrations: 'customers/registrations'
   }
   get 'customers/my_page' =>'customers#show'
   get 'customers/unsubscribe' =>'customers#unsubscribe'

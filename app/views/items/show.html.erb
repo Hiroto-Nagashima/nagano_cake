@@ -5,14 +5,24 @@
     </div>
     <div class ="col-7 my-5 pt-5 offset-md-1">
         <%= form_with model:@cart_item, url:cart_items_path,method: :post,local:true do |f| %>
-        <h3><%=@item.name%></h3>
-        <p><%=@item.introduction%></p>
-        <h3><%=@item.price%>円</h3><span>(税込)</span>
-        <%= f.select :amount,[1,2],include_blank: "個数選択"%>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-      <div class="row">
-        <%= f.submit "カートに入れる" ,class:"btn btn-success my-3"%>
-        <%end%>
+        <div class="row my-3">
+          <h1><%=@item.name%></h1>
+        </div>
+        <div class="row">
+          <p><%=@item.introduction%></p>
+        </div>
+        <div class="row mt-5">
+          <h3><%=@item.price%>円</h3><span>(税込)</span>
+        </div>
+      <div class="row my-4">
+        <div class="col-3 mt-3">
+          <%= f.select :amount,[1,2],include_blank: "個数選択"%>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+        </div>
+        <div class="col-3">
+          <%= f.submit "カートに入れる" ,class:"btn btn-success my-3"%>
+          <%end%>
+        </div>
       </div>
     </div>
   </div>

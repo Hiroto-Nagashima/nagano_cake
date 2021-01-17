@@ -1,15 +1,16 @@
 class CartItemsController < ApplicationController
   def index
     @cart_items=current_customer.cart_items
-
   end
 
   def update
-    @cart_item.new(cart_item_params)
-    @cart_item.customer_id=current_customer.id
-    @cart_item.item_id=Item.find(params[:cart_item][:item_id]).id
-    @cart_item.update
-    redirect_to cart_items_path
+    @cart_item=CartItem.find(params[:id])
+     if @cart_item.update(cart_item_params)
+       redirect_to cart_items_path
+     else
+       @cart_items=current_customer.cart_items
+       render "index"
+     end
   end
 
   def destroy
@@ -37,6 +38,7 @@ class CartItemsController < ApplicationController
       render item_path
     end
   end
+
   private
   def cart_item_params
     params.require(:cart_item).permit(:amount)

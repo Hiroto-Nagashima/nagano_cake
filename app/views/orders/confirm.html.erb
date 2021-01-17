@@ -15,20 +15,21 @@
                 <th>小計</th>
               </tr>
             </thead>
-    　　<%= form_with model: @order ,url:orders_path,method: :post, local: true do |f| %>
+            <% sum = 0 %>
+            <%current_customer.cart_items.each do|ci|%>
               <tbody>
                   <tr>
-                   <%current_customer.cart_items.each do|ci|%>
                     <td><%= attachment_image_tag ci.item, :image, format: 'jpeg',size: "80x80"%><%= ci.item.name%></td>
-                    <td><%= ci.item.price*1.1 %></td>
+                    <td><%= (ci.item.price*1.1).floor %></td>
                     <td> <%= ci.amount%></td>
-                    <td><%= ci.item.price*ci.amount*1.1 %></td>
+                    <td><%= (ci.item.price*ci.amount*1.1).floor %></td>
                   </tr>
               </tbody>
+              <% sum += (ci.item.price*ci.amount*1.1).floor %>
+             <% end %>
             </table>
          </div>
       </div>
-
 
        <div class="col-4 offset-md-3 ">
           <table class="table table-bordered">
@@ -36,10 +37,10 @@
               <th>送料</th><td><%=@order.shopping_fee%></td>
             </tr>
             <tr>
-              <th>商品合計</th><td><%=ci.amount*ci.item.price*1.1%></td>
+              <th>商品合計</th><td><%= sum %></td>
             </tr>
             <tr>
-              <th>請求額</th><td><%=ci.amount*ci.item.price*1.1 + @order.shopping_fee%></td>
+              <th>請求額</th><td><%= sum + @order.shopping_fee%></td>
             </tr>
           </table>
         </div>
@@ -49,6 +50,7 @@
              <p>支払い方法</p>
          </div >
          <div class="col-4 offset-md-4">
+    　   　<%= form_with model: @order ,url:orders_path,method: :post, local: true do |f| %>
              <%=f.text_field:payment_method ,class:"select",namespace:@order.payment_method ,readonly: true%>
          </div >
     </div>
@@ -66,9 +68,9 @@
 
     <div class="row my-4">
          <div class="col-4 offset-md-4">
+             <%= f.hidden_field :total_price, :value => sum + @order.shopping_fee %>
              <%= f.submit "注文を確定する" ,class:"btn btn-success my-3"%>
          </div >
     </div>
-    <% end%>
     <% end %>
  </div>

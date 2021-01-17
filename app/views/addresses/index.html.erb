@@ -32,7 +32,7 @@
   </div>
   <% end %>
   <div class="row my-5">
-    <dic class="col-4">
+    <dic class="col-8">
     <table class="table">
       <thead class="thead-light">
         <tr>
@@ -50,7 +50,7 @@
         <td><%=address.name%></td>
         <td>
           <%= link_to "編集する" , edit_address_path(address.id),class:"btn btn-success btn-sm text-white text-center ml-5"%>
-        　<%= f.submit "削除",class:"btn btn-success btn-sm text-white text-center"%>
+        　<%= f.submit "削除する",class:"btn btn-danger btn-sm text-white text-center"%>
         </td>
       </tr>
       <%end %>

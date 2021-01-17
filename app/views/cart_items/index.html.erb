@@ -18,19 +18,22 @@
             <th></th>
           </tr>
         </thead>
-
+　　<% sum = 0%>
     <% @cart_items.each do |cart_item| %>
-    <%= form_with model:cart_item, url:cart_item_path(cart_item.id),method: :patch,local:true do |f| %>
           <tbody>
               <tr>
-                <td><%= attachment_image_tag cart_item.item, :image, format: 'jpeg',size: "80x80"%><%= cart_item.item.name %></td>
-                <td><%= cart_item.item.price*1.1 %></td>
-                <td> <%= f.select :amount,[1,2,3,4,5,6,7,8],include_blank: "個数選択"%></td>
-                <td><%= cart_item.item.price*cart_item.amount*1.1 %></td>
+                <td><%= attachment_image_tag cart_item.item, :image, format: 'jpeg',size: "80x80"%><%= cart_item.item.name%></td>
+                <td><%= (cart_item.item.price*1.1).floor %></td>
+    　　　　　　　　　　　<%= form_with model:cart_item, url:cart_item_path(cart_item.id),method: :patch,local:true do |f| %>
+                <td> <%= f.select :amount,[1,2,3,4,5,6,7,8],include_blank: "個数選択"%><%= f.submit "変更" ,class:"btn btn-success my-3 ml-3"%></td>
+                <% end %>
+                <td><%= (cart_item.item.price*cart_item.amount*1.1).floor %></td>
+                <%= form_with model:cart_item, url:cart_item_path(cart_item.id),method: :delete,local:true do |f| %>
                 <td> <%= f.submit "削除" ,class:"btn btn-danger my-3"%></td>
+       　　　　　　 <% end%>
               </tr>
           </tbody>
-    <% end%>
+    <% sum += (cart_item.item.price*cart_item.amount*1.1).floor%>
     <% end %>
         </table>
      </div>
@@ -42,7 +45,7 @@
           <table class="table table-bordered">
             <tr>
               <th>合計金額</th>
-              <th></th>
+              <td><%= sum %></td>
             </tr>
           </table>
         </div>

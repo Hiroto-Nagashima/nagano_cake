@@ -25,6 +25,8 @@ class OrdersController < ApplicationController
       @order.name=params[:order][:name]
       @order.postal_code=params[:order][:postal_code]
     end
+
+    # render :new if @order.invalid?
   end
 
   def create
@@ -35,19 +37,21 @@ class OrdersController < ApplicationController
     order.name=params[:order][:name]
     order.shopping_fee = 800
     order.total_price=params[:order][:total_price]
-    order.save
-
-    current_customer.cart_items.each do |ci|
-      order_item = OrderItem.new
-      order_item.item_id = ci.item_id
-      order_item.price=ci.item.price
-      order_item.amount=ci.amount
-      order_item.order_id= order_item.id
-      order_item.save
+    if order.save
+      current_customer.cart_items.each do |ci|
+        order_item = OrderItem.new
+        order_item.item_id = ci.item_id
+        order_item.price=ci.item.price
+        order_item.amount=ci.amount
+        order_item.order_id= order.id
+        order_item.save
+      end
+        cart_items=current_customer.cart_items
+        cart_items.destroy_all
+        redirect_to orders_complete_path
+    else
+      render "confirm"
     end
-     cart_items=current_customer.cart_items
-     cart_items.destroy_all
-     redirect_to orders_complete_path
 
   end
 
@@ -55,6 +59,7 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
   end
 
 

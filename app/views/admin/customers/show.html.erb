@@ -11,7 +11,7 @@
         <tr><th>住所</th><td><%=@customer.address%></td></tr>
         <tr><th>電話番号</th><td><%=@customer.telephone_number%></td></tr>
         <tr><th>メールアドレス</th><td><%=@customer.email%></td></tr>
-        <tr><th>販売ステータス</th><td><%=@customer.is_active%></td></tr>
+        <tr><th>会員ステータス</th><td><%=@customer.is_active%></td></tr>
         <tr>
           <th></th>
           <td class="row">
@@ -19,8 +19,9 @@
               <%= link_to "編集する" , edit_admin_customer_path ,class:"btn btn-success btn-sm text-white text-center" %>
             </div>
             <div class="col">
-              <%= link_to "注文履歴一覧をみる" , admin_path ,class:"btn btn-primary btn-sm text-white text-center" %>
+              <%= link_to "注文履歴一覧をみる" , admin_path(@customer.id) ,class:"btn btn-primary btn-sm text-white text-center" %>
             </td>
+            </div>
         </tr>
       </table>
 

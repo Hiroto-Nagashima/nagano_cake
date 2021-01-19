@@ -17,10 +17,10 @@ class CustomersController < ApplicationController
   def unsubscribe
   end
   def withdraw
-     @customer = Customer.find(current_user.id)
+     @customer = Customer.find(current_customer.id)
      @customer.update(is_active: "退会")
      reset_session
-   　 redirect_to root_path
+     redirect_to root_path
   end
 
   private

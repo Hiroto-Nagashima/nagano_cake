@@ -1,11 +1,11 @@
 <div class="container">
    <div class="row my-4">
      <div class="col-8">
-         <h4>注文情報確認</h4>
+         <h2>注文情報確認</h2>
      </div>
-
-    <div class="row mx-auto">
-      <div class="col-6">
+   </div>
+    <div class="row">
+      <div class="col-7">
           <table class="table table-bordered">
             <thead class="thead-light">
               <tr>
@@ -27,11 +27,10 @@
               </tbody>
               <% sum += (ci.item.price*ci.amount*1.1).floor %>
              <% end %>
-            </table>
-         </div>
+          </table>
       </div>
 
-       <div class="col-4 offset-md-3 ">
+       <div class="col-5 ">
           <table class="table table-bordered">
             <tr>
               <th>送料</th><td><%=@order.shopping_fee%></td>
@@ -44,23 +43,24 @@
             </tr>
           </table>
         </div>
-
-     <div class="row my-4">
-         <div class="col-4 offset-md-4">
-             <p>支払い方法</p>
-         </div >
-         <div class="col-4 offset-md-4">
-    　   　<%= form_with model: @order ,url:orders_path,method: :post, local: true do |f| %>
-             <%=f.text_field:payment_method ,class:"select",namespace:@order.payment_method ,readonly: true%>
-         </div >
     </div>
 
-    <div class="row my-4">
-         <div class="col-4 offset-md-4">
-             <p>お届け先</p>
+  　<%= form_with model: @order ,url:orders_path,method: :post, local: true do |f| %>
+     <div class="row mt-4">
+         <div class="col-2 ">
+             <h4>支払い方法</h4>
          </div >
-         <div class="col-4 offset-md-4">
-             <%=f.text_field:postal_code ,class:"select",namespace:@order.postal_code ,readonly: true%>
+         <div class="col-4">
+          <%=f.text_field:payment_method ,class:"select",namespace:@order.payment_method ,readonly: true%>
+         </div >
+     </div>
+
+    <div class="row my-4">
+         <div class="col-2 ">
+             <h4>お届け先</h4>
+         </div >
+         <div class="col-10">
+             〒<%=f.text_field:postal_code ,class:"select",namespace:@order.postal_code ,readonly: true%>
              <%=f.text_field:address ,class:"select",namespace:@order.address ,readonly: true%>
              <%=f.text_field:name ,class:"select",namespace:@order.name ,readonly: true%>
          </div >

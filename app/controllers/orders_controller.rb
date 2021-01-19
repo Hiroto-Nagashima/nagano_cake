@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
     @orders=Order.all
     @order=Order.new
     @customer=current_customer
+    @addresses=current_customer.addresses
   end
 
   def confirm
@@ -18,8 +19,10 @@ class OrdersController < ApplicationController
         @order.name=@customer.last_name + @customer.first_name
         @order.postal_code=@customer.postal_code
     elsif params[:order][:selected_address]== "1"
-      address=Address.find(params[:order][:registered_address])
+      address=Address.find(params[:ord][:registered_address])
       @order.address=address.address
+      @order.postal_code=address.postal_code
+      @order.name=address.name
     else
       @order.address=params[:order][:address]
       @order.name=params[:order][:name]
@@ -32,6 +35,7 @@ class OrdersController < ApplicationController
   def create
     order = Order.new
     order.customer_id=current_customer.id
+    order.payment_method=params[:order][:payment_method]
     order.postal_code=params[:order][:postal_code]
     order.address=params[:order][:address]
     order.name=params[:order][:name]

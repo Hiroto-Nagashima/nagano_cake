@@ -15,7 +15,11 @@ class CartItemsController < ApplicationController
 
   def destroy
     @cart_item=CartItem.find(params[:id])
-    @cart_item.destroy
+    if @cart_item.destroy
+      redirect_to cart_items_path
+    else
+      render "index"
+    end
   end
 
   def destroy_all

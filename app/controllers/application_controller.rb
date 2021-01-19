@@ -9,11 +9,14 @@ class ApplicationController < ActionController::Base
         admin_top_path
       end
     end
+    def after_sign_up_path_for(resource)
+        customers_my_page_path
+    end
     def after_sign_out_path_for(resource)
       if resource == :customer
         root_path
       elsif resource == :admin
-       root_path
+       new_admin_session_path
       end
     end
 

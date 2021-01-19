@@ -1,4 +1,4 @@
-<div class="about">
+<div class="complete">
     <h2>本当に退会しますか？</h2>
 
     <p>
@@ -10,14 +10,11 @@
 
 <div class="container">
   <div class="row my-1">
-       <div class="col-6">
-        <%= form_with model:current_customer, url:customers_withdraw_path,method: :patch,local:true do |f|%>
-        <%=link_to"退会しない",customers_my_page_path ,class:"btn btn-primary"%>
+       <div class="col-2 offset-md-4 mr-4">
+        <%=link_to"退会しない",customers_my_page_path ,class:"btn btn-primary"  %>
       </div>
-      <div class="col-3">
-        <%= f.submit "退会する",class:"btn btn-danger btn-sm text-white text-center"%>
+      <div class="col-2">
+        <%=link_to"退会する",customers_withdraw_path ,method: :patch,class:"btn btn-danger btn-sm text-white text-center" , data: {confirm: "本当に退会しますか？"} %>
       </div>
   </div>
-  <% end %>
-
 </div>

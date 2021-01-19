@@ -1,7 +1,7 @@
 <div class="container">
 
    <div class="row my-4">
-        <h2>商品紹介</h2>
+        <h2>商品紹介(全<%=@number%>件)</h2>
       </div>
       <% @items.each do |item|%>
         <div class="top-items">
@@ -14,7 +14,7 @@
             <%=item.name%>
           </div>
           <div class="item-price">
-            <span>￥</span><%=item.price%>
+            <span>￥</span><%=(item.price*1.1).floor%>
           </div>
         </div>
         <%end%>

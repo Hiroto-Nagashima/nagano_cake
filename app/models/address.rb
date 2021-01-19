@@ -3,5 +3,8 @@ class Address < ApplicationRecord
   validates :postal_code, length: { is: 7 }
   validates :postal_code, format: { with: /\A[0-9]+\z/}
   validates :name, format: { with: /\A[一-龥ぁ-ん]/}
-
+  def personal_information
+    return "〒" + postal_code + address + name
+  end
 end
+

@@ -18,7 +18,7 @@ class Admin::OrdersController < ApplicationController
      if @order.status == "入金確認"
        @order.order_items.each do |order_item|
        order_item.status = "製作待ち"
-       order_item.update
+       order_item.update(status:"製作待ち")
        end
        redirect_to admin_order_path
      else
